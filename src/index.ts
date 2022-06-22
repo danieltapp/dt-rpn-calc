@@ -9,9 +9,6 @@ import {
   formatEquationForCalculation,
 } from './utils';
 
-// // TODO: add some color to console output(?)
-// // TODO: write a readme w/ instructions to install, build, & run
-
 export class Calculator {
   private _values: number[];
 
@@ -22,10 +19,16 @@ export class Calculator {
   get values(): number[] {
     return this._values;
   }
+
+  get result(): number {
+    return this.values?.pop() as number;
+  }
+
   handleCalculation(input: string): string {
     try {
       const result: number = rpnCalculator(input);
-      this._values = [result];
+      this._values =
+        this._values.length >= 1 ? [...this._values, result] : [result];
       return result.toString();
     } catch (e) {
       throw e;
@@ -43,18 +46,23 @@ export class Calculator {
         return this.handleCalculation(equation);
       }
     } else {
-      // see if value is operand or operator. if operand, push to values array else calculate
       if (isValidOperand(rpnInput)) {
         this._values = [...this.values, parseFloat(rpnInput)];
         return rpnInput;
       }
 
       if (isOperator(rpnInput)) {
-        const equation = formatEquationForCalculation(this.values, rpnInput);
-        // TODO: 
-        // check to see if equation is valid, if not enough operands store equation and wait for additional user input
-        // if valid, handleCalculation
-        return this.handleCalculation(equation);
+        if (this.values.length > 2) {
+          const [a, b] = [this._values.pop(), this._values.pop()];
+          const equation = formatEquationForCalculation(
+            [b as number, a as number],
+            rpnInput,
+          );
+          return this.handleCalculation(equation);
+        } else {
+          const equation = formatEquationForCalculation(this.values, rpnInput);
+          return this.handleCalculation(equation);
+        }
       } else {
         throw errorMessages.invalidCharacter(rpnInput);
       }
@@ -67,7 +75,7 @@ const calculatorInterface = readline.createInterface(
   process.stdout,
 );
 const calculator = new Calculator();
-calculatorInterface.setPrompt('> ');
+calculatorInterface.setPrompt('rpn calculator> ');
 calculatorInterface.prompt();
 
 calculatorInterface

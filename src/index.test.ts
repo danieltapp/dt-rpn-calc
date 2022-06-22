@@ -1,41 +1,41 @@
 import { Calculator } from '.';
+import rpnCalculator from './rpnCalculator';
 
-// test the calculator class
 let calculator: Calculator;
 
 beforeEach(() => {
   calculator = new Calculator();
 });
 
+function handleCalculation(values: string[]): number {
+  values.forEach((value) => calculator.calculate(value));
+  return calculator.result;
+}
+
 it('calculates individual operator/operand inputs', () => {
-  calculator.calculate('5');
-  calculator.calculate('5');
-  calculator.calculate('+');
-  expect(calculator.values.join(' ')).toBe('10');
+  const values: string[] = ['5', '5', '+'];
+  const result = handleCalculation(values);
+
+  expect(rpnCalculator(values.join(' '))).toBe(result);
 });
 
 it('calculates both npr equations and individual operator/operand inputs', () => {
-  calculator.calculate('5 5 5 8 + + -');
-  expect(calculator.values.join(' ')).toBe('-13');
-  calculator.calculate('13 +');
-  expect(calculator.values.join(' ')).toBe('0');
+  const values: string[] = ['5 5 5 8 + + -', '13 +'];
+  const result = handleCalculation(values);
+
+  expect(rpnCalculator(values.join(' '))).toBe(result);
 });
 
 it('calculates negative and positive operands correctly', () => {
-  calculator.calculate('-3');
-  calculator.calculate('-2');
-  calculator.calculate('*');
-  expect(calculator.values.join(' ')).toBe('6');
-  calculator.calculate('5');
-  calculator.calculate('+');
-  expect(calculator.values.join(' ')).toBe('11');
+  const values: string[] = ['-3', '-2', '*', '5', '+'];
+  const result = handleCalculation(values);
+
+  expect(rpnCalculator(values.join(' '))).toBe(result);
 });
 
 it('returns correct value by using a division operator at the end', () => {
-  calculator.calculate('5');
-  calculator.calculate('9');
-  calculator.calculate('1');
-  calculator.calculate('-');
-  calculator.calculate('/');
-  expect(calculator.values.join(' ')).toBe('0.625');
+  const values: string[] = ['5', '9', '1', '-', '/'];
+  const result = handleCalculation(values);
+
+  expect(rpnCalculator(values.join(' '))).toBe(result);
 });

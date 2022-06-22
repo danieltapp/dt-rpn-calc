@@ -1,8 +1,8 @@
-export interface operator {
+export interface operators {
   [character: string]: (a: number, b: number) => number;
 }
 
-export const operators: operator = {
+export const operators: operators = {
   '+': (a, b) => a + b,
   '-': (a, b) => a - b,
   '*': (a, b) => a * b,
