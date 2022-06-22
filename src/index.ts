@@ -21,7 +21,7 @@ export class Calculator {
   }
 
   get result(): number {
-    return this.values?.pop() as number;
+    return [...this.values].pop() as number;
   }
 
   handleCalculation(input: string): string {
