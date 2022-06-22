@@ -25,12 +25,10 @@
     "build": "yarn tsc && yarn chmod",
     "chmod": "chmod u+x ./bin/index.js",
     "calculate": "node ./bin/index.js",
-    "test": "jest"
+    "test": "jest --watchAll --detectOpenHandles"
   },
   "bin": {
     "dt-rpn-calc": "./bin/index.js"
   },
-  "dependencies": {
-    "commander": "^9.3.0"
-  }
+  "dependencies": {}
 }
