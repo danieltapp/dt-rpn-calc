@@ -28,3 +28,10 @@ export function getEquationCharacters(rpnInput: string): string[] {
     .split(new RegExp(isWhiteSpace, 'g'))
     .filter((el) => !isWhiteSpace.test(el) && el !== '');
 }
+
+export function formatEquationForCalculation(
+  values: number[],
+  input: string,
+): string {
+  return `${values.join(' ')} ${input}`;
+}
