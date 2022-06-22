@@ -20,9 +20,9 @@
   },
   "scripts": {
     "tsc": "tsc",
-    "lint": "eslint '**/*.{js,ts}' --fix",
+    "lint": "eslint '**/*.{js,ts}' --fix && yarn prettier",
     "prettier": "prettier --write .",
-    "build": "yarn tsc && yarn chmod",
+    "build": "yarn tsc && yarn lint && yarn chmod",
     "chmod": "chmod u+x ./bin/index.js",
     "calculate": "node ./bin/index.js",
     "test": "jest --watchAll --detectOpenHandles"
