@@ -8,7 +8,7 @@ My approach on the solution was to first get the Reverse Polish Notation methods
 
 I tried to author a balanced amount of happy & sad path tests on the RPN calculation, as any errors being thrown would come from that method directly. The Calculator class is a wrapper intended drive the logic of the calculator interface, so I view the tests for that more as integration tests. I went the TDD route when I was building out the Calculator class and CLI interface to test out all the scenarios given to meet the MVP for this solution.
 
-Things I would do in the future if I continued building this project out would be potentially publishing the rpnCalculator as it's own package, that would allow a user to specify options like the available operators (and add to that list as well). If the idea would be to allow other integrations (perhaps an API endpoint) then it would be nice for other applications to have access to these utility functions to improve usability. I'd also try and add some fun ASCII art and color to the CLI itself. For this exercise though, I wanted to hit the acceptance criteria to the best of my ability in a manner that made it easy to read & allowed scalability. 
+Things I would do in the future if I continued building this project out would be potentially publishing the rpnCalculator as it's own package, that would allow a user to specify options like the available operators (and add to that list as well). If the idea would be to allow other integrations (perhaps an API endpoint) then it would be nice for other applications to have access to these utility functions to improve usability. I'd also try and add some fun ASCII art and color to the CLI itself. For this exercise though, I wanted to hit the acceptance criteria to the best of my ability in a manner that made it easy to read & allowed scalability.
 
 Overall I found this exercise to be a lot of fun. I got a nice little math lesson and was able to try out a Node feature that I'd never used previously 👍👍. My 2 big goals were:
 
@@ -18,6 +18,7 @@ Overall I found this exercise to be a lot of fun. I got a nice little math lesso
 Thanks for taking the time to review the solution. Below are instructions for setup and usage of the CLI...
 
 ## Install | Build | Test
+
 I am using Yarn as my package manager, but you can use npm if you so choose. So I've included instructions for either option below...
 
 ```bash

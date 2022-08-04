@@ -47,7 +47,7 @@ export class Calculator {
       }
     } else {
       if (isValidOperand(rpnInput)) {
-        this._values = [...this.values, parseFloat(rpnInput)];
+        this._values = [...this.values, parseInt(rpnInput)];
         return rpnInput;
       }
 

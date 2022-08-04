@@ -29,11 +29,12 @@ export default function rpnCalculator(rpnInput: string): number {
 
   // return remaining operand if there is one or throw error
   if (operands.length === 1) {
-    const result = operands.pop() as number;
+    const result = Number((operands.pop() as number).toFixed(2));
     if (isNaN(result)) {
       // in the event that too many operands are provided, throw error
       throw invalidRpnInput(rpnInput);
     }
+
     return result;
   } else throw invalidRpnInput(rpnInput);
 }
